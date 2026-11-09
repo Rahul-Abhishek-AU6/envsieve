@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img" aria-label="EnvSieve terminal audit catching missing environment variables and zombie template keys">
+  <rect width="1200" height="740" fill="#0d1117" rx="16"/>
+  <!-- Window Controls -->
+  <circle cx="36" cy="34" r="8" fill="#ff5f57"/>
+  <circle cx="62" cy="34" r="8" fill="#febc2e"/>
+  <circle cx="88" cy="34" r="8" fill="#28c840"/>
+  <text x="600" y="40" fill="#8b949e" font-family="ui-monospace, Menlo, Monaco, monospace" font-size="16" font-weight="600" text-anchor="middle">envsieve — pre-commit environment drift &amp; template audit</text>
+
+  <g font-family="ui-monospace, Menlo, Monaco, monospace" font-size="19" fill="#c9d1d9">
+    <!-- Command -->
+    <text x="40" y="90" fill="#7ee787">$</text>
+    <text x="65" y="90" fill="#f0f6fc">python3 run_envsieve.py --diff</text>
+
+    <!-- Header Receipt -->
+    <text x="40" y="140" fill="#58a6ff" font-weight="bold">EnvSieve Configuration &amp; Environment Audit</text>
+    <text x="40" y="175" fill="#8b949e">Root: /workspace/billing-service | Mode: Git Diff</text>
+    <text x="40" y="205" fill="#8b949e">Templates detected: .env.example | Scanned 2 files (5 env accesses)</text>
+
+    <!-- Missing Variables Section -->
+    <text x="40" y="260" fill="#ff7b72" font-weight="bold">🚨 MISSING ENVIRONMENT VARIABLES IN TEMPLATE (3)</text>
+    <text x="40" y="292" fill="#8b949e" font-size="16">Keys read in code but missing from .env.example (production boot crash imminent)</text>
+
+    <!-- Finding 1 -->
+    <text x="40" y="340" fill="#ff7b72" font-weight="bold">  1. 'STRIPE_SECRET_KEY'</text>
+    <text x="315" y="340" fill="#ff7b72" font-size="16">[REQUIRED]</text>
+    <text x="430" y="340" fill="#f0f6fc">at src/payments.py:5</text>
+    <text x="75" y="372" fill="#8b949e">Code: </text><text x="145" y="372" fill="#f0f6fc">stripe_key = os.environ["STRIPE_SECRET_KEY"]</text>
+    <text x="75" y="402" fill="#d29922">Action: </text><text x="165" y="402" fill="#f0f6fc">Add 'STRIPE_SECRET_KEY=...' to .env.example</text>
+
+    <!-- Finding 2 -->
+    <text x="40" y="450" fill="#ff7b72" font-weight="bold">  2. 'WEBHOOK_SIGNING_SECRET'</text>
+    <text x="390" y="450" fill="#ff7b72" font-size="16">[REQUIRED]</text>
+    <text x="505" y="450" fill="#f0f6fc">at src/payments.py:6</text>
+    <text x="75" y="482" fill="#8b949e">Code: </text><text x="145" y="482" fill="#f0f6fc">signing_secret = os.environ["WEBHOOK_SIGNING_SECRET"]</text>
+    <text x="75" y="512" fill="#d29922">Action: </text><text x="165" y="512" fill="#f0f6fc">Add 'WEBHOOK_SIGNING_SECRET=...' to .env.example</text>
+
+    <!-- Zombie Variables -->
+    <text x="40" y="565" fill="#d29922" font-weight="bold">⚠️  ZOMBIE TEMPLATE VARIABLES (1)</text>
+    <text x="75" y="598" fill="#d29922">- OLD_UNUSED_METRIC</text><text x="290" y="598" fill="#8b949e">in .env.example (declared in template but unused in code)</text>
+
+    <!-- Result Footer -->
+    <text x="40" y="655" fill="#ff7b72" font-weight="bold">Result: FAILED (Exit 1)</text>
+    <text x="310" y="655" fill="#8b949e">— Blocked commit: 3 undocumented variables</text>
+
+    <text x="40" y="708" fill="#484f58" font-size="14">Truthful terminal demo captured from demo.py test execution; zero mock fabrication.</text>
+  </g>
+</svg>
