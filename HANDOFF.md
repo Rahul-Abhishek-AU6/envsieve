@@ -26,7 +26,3 @@ Project **EnvSieve** has completed all 7 stages and has been published live to G
    - Push protection clean; zero hardcoded secrets.
 7. **Launch (`reports/reddit-post.md`)**:
    - Community-ready announcement drafted for `r/Python` (Showcase flair), `r/devops`, and `r/programming`.
-
-### Next Actions
-- Verify live GitHub repository: https://github.com/Rahul-Abhishek-AU6/envsieve
-- Submit prepared Reddit post from `reports/reddit-post.md` to `r/Python` using active browser session.
